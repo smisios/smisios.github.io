@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://smisios.github.i/sitemap.xml
+Sitemap: https://smisios.github.io/sitemap.xml
