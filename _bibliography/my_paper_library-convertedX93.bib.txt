@@ -1,0 +1,359 @@
+﻿@article{RN3244,
+   author = {Misios, S. and Schmidt, H.},
+   title = {Mechanisms Involved in the Amplification of the 11-yr Solar Cycle Signal in the Tropical Pacific Ocean},
+   journal = {Journal of Climate},
+   volume = {25},
+   number = {14},
+   pages = {5102-5118},
+   note = {982FI
+Times Cited:1
+Cited References Count:56},
+   abstract = {It is debated whether the response of the tropical Pacific Ocean to the 11-yr solar cycle forcing resembles a La Nina- or El Nino-like signal. To address this issue, ensemble simulations employing an atmospheric general circulation model with and without ocean coupling are conducted. The coupled simulations show no evidence for a La Nina like cooling in solar maxima. Instead, the tropical sea surface temperature rises almost in phase with the 11-yr solar cycle. A basinwide warming of about 0.1 K is simulated in the tropical Pacific, whereas the warming in the tropical Indian and Atlantic Oceans is weaker. In the western Pacific, the region of deep convection shifts to the east, thus reducing the surface easterlies. This shift is independent of the ocean coupling because deep convection moves to the east in the uncoupled simulations too. The reduced surface easterlies cool the subsurface but warm the surface due to the reduction of heat transport divergence. The latter mechanism operates together with water vapor feedback, resulting in a stronger tropical Pacific warming relative to the warming over the tropical Indian and Atlantic Oceans. These results suggest that the atmospheric response to the 11-yr solar cycle drives the tropical Pacific response, which is amplified by atmosphere-ocean feedbacks operating on decadal time scales. Based on the coupled simulations, it is concluded that the tropical Pacific Ocean should warm when the sun is more active.},
+   keywords = {sea-surface temperature
+decadal variability
+equatorial pacific
+climate response
+atmosphere model
+coupled model
+el-nino
+la-nina
+circulation
+region},
+   ISSN = {0894-8755},
+   DOI = {10.1175/Jcli-D-11-00261.1},
+   url = {<Go to ISI>://000307027800021
+http://journals.ametsoc.org/doi/pdf/10.1175/JCLI-D-11-00261.1},
+   year = {2012},
+   type = {Journal Article}
+}
+
+@article{RN3503,
+   author = {Weil, M. and Grassl, H. and Hoshyaripour, G. and Kloster, S. and Kominek, J. and Misios, S. and Scheffran, J. and Starr, S. and Stenchikov, G. and Sudarchikova, N. and Timmreck, C. and Zhang, D. and Kalinowski, M.},
+   title = {Pathways, Impacts, and Policies on Severe Aerosol Injections into the Atmosphere 2011 Severe Atmospheric Aerosols Events Conference},
+   journal = {Bulletin of the American Meteorological Society},
+   volume = {93},
+   number = {9},
+   pages = {Es85-Es88},
+   note = {009WP
+Times Cited:0
+Cited References Count:4},
+   ISSN = {0003-0007},
+   url = {<Go to ISI>://000309056400001},
+   year = {2012},
+   type = {Journal Article}
+}
+
+@article{RN3505,
+   author = {Misios, Stergios and Schmidt, Hauke},
+   title = {The role of the oceans in shaping the tropospheric response to the 11 year solar cycle},
+   journal = {Geophysical Research Letters},
+   pages = {n/a-n/a},
+   keywords = {solar cycle
+ocean variability
+troposphere
+0368 Troposphere: constituent transport and chemistry
+1650 Solar variability
+2479 Solar radiation and cosmic ray effects
+3362 Stratosphere/troposphere interactions},
+   ISSN = {1944-8007},
+   DOI = {10.1002/2013gl058439},
+   url = {http://dx.doi.org/10.1002/2013GL058439},
+   year = {2013},
+   type = {Journal Article}
+}
+
+@inbook{RN3330,
+   author = {Schmidt, Hauke and Kieser, Jens and Misios, Stergios and Gruzdev, AleksandrN},
+   title = {The Atmospheric Response to Solar Variability: Simulations with a General Circulation and Chemistry Model for the Entire Atmosphere},
+   booktitle = {Climate and Weather of the Sun-Earth System (CAWSES)},
+   editor = {Lübken, Franz-Josef},
+   series = {Springer Atmospheric Sciences},
+   publisher = {Springer Netherlands},
+   chapter = {31},
+   pages = {585-604},
+   ISBN = {978-94-007-4347-2},
+   DOI = {10.1007/978-94-007-4348-9_31},
+   url = {http://dx.doi.org/10.1007/978-94-007-4348-9_31},
+   year = {2013},
+   type = {Book Section}
+}
+
+@article{RN4209,
+   author = {Fountoulakis, I. and Bais, A. F. and Tourpali, K. and Fragkos, K. and Misios, S.},
+   title = {Projected changes in solar UV radiation in the Arctic and sub-Arctic Oceans: Effects from changes in reflectivity, ice transmittance, clouds, and ozone},
+   journal = {Journal of Geophysical Research: Atmospheres},
+   volume = {119},
+   number = {13},
+   pages = {8073-8090},
+   keywords = {UV radiation
+climate change
+erythemal dose
+sea ice reflectivity effect
+Arctic
+ultraviolet projections
+0358 Thermosphere: energy deposition
+0422 Bio-optics
+1630 Impacts of global change
+1626 Global climate models
+9315 Arctic region},
+   ISSN = {2169-8996},
+   DOI = {10.1002/2014JD021918},
+   url = {http://dx.doi.org/10.1002/2014JD021918},
+   year = {2014},
+   type = {Journal Article}
+}
+
+@article{RN3686,
+   author = {Mitchell, D.M. and Gray, L.J.  and Fujiwara, M. and Hibino, T. and Anstey, J.A. and Ebisuzaki, W.  and Harada, Y. and Long, C. and Misios, S. and Stott, P.A. and Tan, D.},
+   title = {Signatures of Natural Variability in the Atmosphere using Multiple Reanalysis Dataset},
+   journal = {Quarterly Journal of the Royal Meteorological Society},
+   year = {2014},
+   type = {Journal Article}
+}
+
+@article{RN3685,
+   author = {Hood, L. and Misios, S. and Mitchell, D.M. and Gray, L.J. and Tourpali, K. and Matthes, K. and Schmidt, H. and Chiodo, G. and Thieblemont, R. and Rozanov, E. and Shindell, D. and Krivolutsky, A.},
+   title = {Solar Signals in CMIP-5 Simulations: The Ozone Response},
+   journal = {Quarterly Journal of the Royal Meteorological Society},
+   volume = {141},
+   pages = {2670–2689},
+   year = {2015},
+   type = {Journal Article}
+}
+
+@article{RN3680,
+   author = {Mitchell, D.M. and Misios, S. and Gray, L.J. and Tourpali, K. and Matthes, K. and Hood, L. and Schmidt, H. and Chiodo, G. and Thieblemont, R. and Rozanov, E. and Shindell, D. and Krivolutsky, A.},
+   title = {Solar Signals in CMIP-5 Simulations: The Stratospheric Pathway},
+   journal = {Quarterly Journal of the Royal Meteorological Society},
+   volume = {141},
+   pages = {2390-2403},
+   year = {2015},
+   type = {Journal Article}
+}
+
+@article{RN4106,
+   author = {Matthes, K. and Funke, B. and Anderson, M. E. and Barnard, L. and Beer, J. and Charbonneau, P. and Clilverd, M. A. and Dudok de Wit, T. and Haberreiter, M. and Hendry, A. and Jackman, C. H. and Kretschmar, M. and Kruschke, T. and Kunze, M. and Langematz, U. and Marsh, D. R. and Maycock, A. and Misios, S. and Rodger, C. J. and Scaife, A. A. and Seppälä, A. and Shangguan, M. and Sinnhuber, M. and Tourpali, K. and Usoskin, I. and van de Kamp, M. and Verronen, P. T. and Versick, S.},
+   title = {Solar Forcing for CMIP6 (v3.2)},
+   journal = {Geosci. Model Dev. Discuss.},
+   volume = {2016},
+   pages = {1-82},
+   note = {GMDD
+http://www.geosci-model-dev-discuss.net/gmd-2016-91/gmd-2016-91.pdf},
+   ISSN = {1991-962X},
+   DOI = {10.5194/gmd-2016-91},
+   url = {http://www.geosci-model-dev-discuss.net/gmd-2016-91/},
+   year = {2016},
+   type = {Journal Article}
+}
+
+@article{RN3684,
+   author = {Misios, S. and Mitchell, D.M. and Gray, L.J. and Tourpali, K. and Matthes, K. and Hood, L. and Schmidt, H. and Chiodo, G. and Thieblemont, R. and Rozanov, E. and Shindell, D. and Krivolutsky, A.},
+   title = {Solar Signals in CMIP-5 Simulations: Effects of Atmosphere-Ocean Coupling},
+   journal = {Quarterly Journal of the Royal Meteorological Society},
+   year = {2016},
+   type = {Journal Article}
+}
+
+@article{RN4179,
+   author = {Gray, Lesley J. and Ball, Will and Misios, Stergios and Davies, Roger and Egli, Luca and Schmutz, Werner},
+   title = {Solar influences on climate over the Atlantic / European sector},
+   journal = {AIP Conference Proceedings},
+   volume = {1810},
+   number = {1},
+   pages = {020002},
+   ISSN = {0094-243X},
+   DOI = {10.1063/1.4975498},
+   url = {http://aip.scitation.org/doi/abs/10.1063/1.4975498},
+   year = {2017},
+   type = {Journal Article}
+}
+
+@article{RN4177,
+   author = {Haberreiter, Margit and Schöll, Micha and Dudok de Wit, Thierry and Kretzschmar, Matthieu and Misios, Stergios and Tourpali, Kleareti and Schmutz, Werner},
+   title = {A new observational solar irradiance composite},
+   journal = {Journal of Geophysical Research: Space Physics},
+   pages = {n/a-n/a},
+   keywords = {Solar Variability
+Solar Cycle
+Solar Irradiance
+0434 Data sets
+1650 Solar variability
+2162 Solar cycle variations
+2479 Solar radiation and cosmic ray effects
+3315 Data assimilation},
+   ISSN = {2169-9402},
+   DOI = {10.1002/2016JA023492},
+   url = {http://dx.doi.org/10.1002/2016JA023492},
+   year = {2017},
+   type = {Journal Article}
+}
+
+@article{RN4509,
+   author = {Logothetis, Ioannis and Tourpali, Kleareti and Misios, Stergios and Zanis, Prodromos},
+   title = {Etesians and the summer circulation over East Mediterranean in Coupled Model Intercomparison Project Phase 5 simulations: Connections to the Indian summer monsoon},
+   journal = {International Journal of Climatology},
+   volume = {0},
+   number = {0},
+   abstract = { Abstract Etesians are north to south direction winds in the lower atmosphere, blowing over the Aegean basin from early summer to early autumn. They are an important circulation component for the East Mediterranean (EMED) area, linked to the subsidence and ascent circulation over EMED and the extended Indian monsoon region, respectively. In this study we investigate the evolution of Etesian days and the associated wind speed (10 m) over the recent past (1979?2005) in simulations from Earth System Models (ESMs) available from the Coupled Model Intercomparison Project Phase 5. Results from this analysis are compared to the ERA-Interim reanalysis. Moreover, we study the connection of the Etesians to the atmospheric circulation over EMED and the wider Indian monsoon area, in particular over the west Indian summer monsoon (wISM) and the Bay of Bengal (BoB). Our findings suggest that while the ESMs underestimate the wind speed of the Etesians, their frequency and summer cycle are in good agreement to reanalysis. ESMs can accurately represent the summer atmospheric circulation and depict the connection between EMED and Indian summer monsoon (ISM), capturing the link between them. Finally, we highlight here the capability and efficiency of ESMs in representing the climatology of Etesians and related atmospheric circulation.},
+   keywords = {atmospheric circulation
+CMIP5
+East Mediterranean
+ESMs
+Etesian winds
+Indian summer monsoon
+reanalysis data set
+subsidence},
+   ISSN = {0899-8418},
+   DOI = {https://doi.org/10.1002/joc.6259},
+   url = {https://doi.org/10.1002/joc.6259},
+   year = {2019},
+   type = {Journal Article}
+}
+
+@article{RN4410,
+   author = {Misios, S. and Gray, L. J. and Knudsen, M. F. and Karoff, Christoffer and Schmidt, H. and Haigh, J. },
+   title = {Slowdown of the Walker circulation at Solar Cycle Maximum},
+   journal = {PNAS },
+   year = {2019},
+   type = {Journal Article}
+}
+
+@article{RN4800,
+   author = {Andrews, M. B. and Ridley, J. K. and Wood, R. A. and Andrews, T. and Blockley, E. W. and Booth, B. and Burke, E. and Dittus, A. J. and Florek, P. and Gray, L. J. and Haddad, S. and Hardiman, S. C. and Hermanson, L. and Hodson, D. and Hogan, E. and Jones, G. S. and Knight, J. R. and Kuhlbrodt, T. and Misios, S. and Mizielinski, M. S. and Ringer, M. A. and Robson, J. and Sutton, R. T.},
+   title = {Historical Simulations With HadGEM3-GC3.1 for CMIP6},
+   journal = {Journal of Advances in Modeling Earth Systems},
+   volume = {12},
+   number = {6},
+   note = {Mf9zd
+Times Cited:0
+Cited References Count:98},
+   abstract = {We describe and evaluate historical simulations which use the third Hadley Centre Global Environment Model in the Global Coupled configuration 3.1 (HadGEM3-GC3.1) model and which form part of the UK's contribution to the sixth Coupled Model Intercomparison Project, CMIP6. These simulations, run at two resolutions, respond to historically evolving forcings such as greenhouse gases, aerosols, solar irradiance, volcanic aerosols, land use, and ozone concentrations. We assess the response of the simulations to these historical forcings and compare against the observational record. This includes the evolution of global mean surface temperature, ocean heat content, sea ice extent, ice sheet mass balance, permafrost extent, snow cover, North Atlantic sea surface temperature and circulation, and decadal precipitation. We find that the simulated time evolution of global mean surface temperature broadly follows the observed record but with important quantitative differences which we find are most likely attributable to strong effective radiative forcing from anthropogenic aerosols and a weak pattern of sea surface temperature response in the low to middle latitudes to volcanic eruptions. We also find evidence that anthropogenic aerosol forcings play a role in driving the Atlantic Multidecadal Variability and the Atlantic Meridional Overturning Circulation, which are key features of the North Atlantic ocean. Overall, the model historical simulations show many features in common with the observed record over the period 1850-2014 and so provide a basis for future in-depth study of recent climate change.},
+   keywords = {cmip6
+historical simulations
+hadgem3-gc3
+1
+aogcm
+atlantic multidecadal variability
+north-atlantic
+surface-temperature
+sea-ice
+anthropogenic aerosols
+amoc variability
+sahel rainfall
+mass-balance
+model
+climate},
+   DOI = {ARTN e2019MS001995
+10.1029/2019MS001995},
+   url = {<Go to ISI>://WOS:000545694700005},
+   year = {2020},
+   type = {Journal Article}
+}
+
+@article{RN4957,
+   author = {Misios, S. and Kasoar, M. and Kasoar, E. and Gray, L. and Haigh, J. and Stathopoulos, S. and Kourtidis, K. and Myhre, G. and Olivie, D. and Shindell, D. and Tang, T.},
+   title = {Similar patterns of tropical precipitation and circulation changes under solar and greenhouse gas forcing},
+   journal = {Environmental Research Letters},
+   volume = {16},
+   number = {10},
+   note = {Wg2sp
+Times Cited:0
+Cited References Count:51},
+   abstract = {Theory and model evidence indicate a higher global hydrological sensitivity for the same amount of surface warming to solar as to greenhouse gas (GHG) forcing, but regional patterns are highly uncertain due to their dependence on circulation and dynamics. We analyse a multi-model ensemble of idealized experiments and a set of simulations of the last millennium and we demonstrate similar global signatures and patterns of forced response in the tropical Pacific, of higher sensitivity for the solar forcing. In the idealized simulations, both solar and GHG forcing warm the equatorial Pacific, enhance precipitation in the central Pacific, and weaken and shift the Walker circulation eastward. Centennial variations in the solar forcing over the last millennium cause similar patterns of enhanced equatorial precipitation and slowdown of the Walker circulation in response to periods with stronger solar forcing. Similar forced patterns albeit of considerably weaker magnitude are identified for variations in GHG concentrations over the 20th century, with the lower sensitivity explained by fast atmospheric adjustments. These findings differ from previous studies that have typically suggested divergent responses in tropical precipitation and circulation between the solar and GHG forcings. We conclude that tropical Walker circulation and precipitation might be more susceptible to solar variability rather than GHG variations during the last-millennium, assuming comparable global mean surface temperature changes.},
+   keywords = {solar forcing
+ghg forcing
+pdrmip
+cesm last millennium
+stratospheric ozone
+climate
+pacific
+responses
+ocean
+simulations
+reduction
+pdrmip
+cycle
+slow},
+   ISSN = {1748-9326},
+   DOI = {ARTN 104045
+10.1088/1748-9326/ac28b1},
+   url = {<Go to ISI>://WOS:000706847600001},
+   year = {2021},
+   type = {Journal Article}
+}
+
+@article{RN5185,
+   author = {Kaiser Kudsk, Sabrina Gjødvad and Knudsen, Mads Faurschou and Karoff, Christoffer and Baittinger, Claudia and Misios, Stergios and Olsen, Jesper},
+   title = {Solar variability between 650 CE and 1900 - Novel insights from a global compilation of new and existing high-resolution 14C records},
+   journal = {Quaternary Science Reviews},
+   volume = {292},
+   pages = {107617},
+   abstract = {This study investigates solar variability between 650 CE and 1900 based on new and published 14C records with a time resolution of two years or higher. The new high-resolution 14C data presented here are derived from Danish oak and span the period 1058–1250 CE. We determine the durations of past solar minima and periods with moderate solar activity from the solar modulation potential calculated using a carbon-box model with the high-resolution 14C records as input. The observed intervals of solar minima and intermittent periods with moderate activity levels suggest that a Maunder-type minimum occurred in 656–707 CE. We tentatively propose to name this minimum the Horrebow Minimum after Christian Horrebow, an early Danish astronomer who studied the occurrence of sunspots and was the first to propose that they follow a cyclic behaviour. Changes in amplitude and cycle length of the 11-year solar cycle are investigated by bandpass filtering 23 individual 14C records. The filtered 14C data indicate that the length of the 11-year solar cycle may be prolonged before the onset of the Oort, Maunder, and Spörer minima. The amplitude of the 11-year solar cycle associated with solar minima and periods with moderate solar activity between 650 CE and 1900 is estimated to 1.1‰. A two-sample Kolmogorov-Smirnov goodness-of-fit test indicates that there is no significant difference between the amplitude distribution of 11-year solar cycles during solar minima and periods of moderate solar activity. A review of the high-resolution 14C records encompassing the near-Earth supernova events that occurred in 1006 CE, 1054, 1181, 1572, and 1604 suggests that these events were not accompanied by distinct changes in the 14C production rate. Nonetheless, an unusual increase of c. 10‰ in Δ14C between 1048 CE and 1055 is observed and discussed.},
+   ISSN = {0277-3791},
+   DOI = {https://doi.org/10.1016/j.quascirev.2022.107617},
+   url = {https://www.sciencedirect.com/science/article/pii/S0277379122002487},
+   year = {2022},
+   type = {Journal Article}
+}
+
+@article{RN5008,
+   author = {Logothetis, I. and Dafka, S. and Tourpali, K. and Misios, S. and Zanis, P. and Xoplaki, E. and Luterbacher, J. and Papagianoulis, E.},
+   title = {The Southeast Asian monsoon and El Nino-Southern Oscillation impact on the summer atmospheric circulation of East Mediterranean during 20th century based on ERA-20C and CMIP5 simulations},
+   journal = {International Journal of Climatology},
+   note = {Ya2kd
+Times Cited:0
+Cited References Count:85},
+   abstract = {El Nino-Southern Oscillation (ENSO) and the Indian summer monsoon (ISM) are the dominant modes of climate variability affecting the tropical and subtropical regions. In this study, we investigate the impact of ENSO episodes, through the modulation of the ISM configuration, on the Eastern Mediterranean (EMed) summer atmospheric circulation over the whole 20th century using state of the art model simulations from the 5th phase of the Climate Model Intercomparison Project (CMIP5). Results are validated against the European Centre for Medium-Range Weather Forecasts Re-Analysis, ERA-20C. Our findings indicate that the variability of ENSO has a significant impact on the low and middle tropospheric circulation of EMed. La Nina (El Nino) events are related to stronger (weaker) ISM activity, which leads to a deepening (weakening) of the Persian low that affects the EMed tropospheric circulation with stronger (weaker) northerly surface winds over the area. Further, La Nina (El Nino) events are related with stronger (weaker) 500 hPa subsidence over the EMed and an intensification (weakening) of the Subtropical Jet Stream between 35 degrees N to 50 degrees N. This work improves our understanding of the teleconnections between ENSO variability and the EMed summer tropospheric circulation via the modulation of the ISM activity and stresses the importance of ENSO on the EMed climate in summer.},
+   keywords = {cmip5
+eastern mediterranean
+enso
+era-20c
+etesians
+indian summer monsoon
+climate-change projections
+indian-ocean dipole
+enso influence
+variability
+precipitation
+model
+temperature
+dynamics
+europe
+anomalies},
+   ISSN = {0899-8418},
+   DOI = {https://doi.org/10.1002/joc.7510},
+   url = {<Go to ISI>://WOS:000738167700001},
+   year = {2022},
+   type = {Journal Article}
+}
+
+@article{RN5084,
+   author = {Misios, S. and Logothetis, I. and Knudsen, M. F. and Karoff, C. and Amiridis, V. and Tourpali, K.},
+   title = {Decline in Etesian winds after large volcanic eruptions in the last millennium},
+   journal = {Weather Clim. Dynam.},
+   volume = {3},
+   number = {3},
+   pages = {811-823},
+   note = {WCD},
+   ISSN = {2698-4016},
+   DOI = {10.5194/wcd-3-811-2022},
+   url = {https://wcd.copernicus.org/articles/3/811/2022/},
+   year = {2022},
+   type = {Journal Article}
+}
+
+@article{RN5260,
+   author = {Amiridis, Vassilis and Kampouri, Anna and Gkikas, Antonis and Misios, Stergios and Gialitaki, Anna and Marinou, Eleni and Rennie, Michael and Benedetti, Angela and Solomos, Stavros and Zanis, Prodromos and Vasardani, Olympia and Eleftheratos, Konstantinos and Paschou, Peristera and Georgiou, Thanasis and Scollo, Simona and Mona, Lucia and Papagiannopoulos, Nikolaos and Retscher, Christian and Parrinello, Tommaso and Straume, Anne Grete},
+   title = {Aeolus winds impact on volcanic ash early warning systems for aviation},
+   journal = {Scientific Reports},
+   volume = {13},
+   number = {1},
+   pages = {7531},
+   abstract = {Forecasting volcanic ash atmospheric pathways is of utmost importance for aviation. Volcanic ash can interfere with aircraft navigational instruments and can damage engine parts. Early warning systems, activated after volcanic eruptions can alleviate the impacts on aviation by providing forecasts of the volcanic ash plume dispersion. The quality of these short-term forecasts is subject to the accuracy of the meteorological wind fields used for the initialization of regional models. Here, we use wind profiling data from the first high spectral resolution lidar in space, Aeolus, to examine the impact of measured wind fields on regional NWP and subsequent volcanic ash dispersion forecasts, focusing on the case of Etna’s eruption on March 2021. The results from this case study demonstrate a significant improvement of the volcanic ash simulation when using Aeolus-assimilated meteorological fields, with differences in wind speed reaching up to 8 m/s when compared to the control run. When comparing the volcanic ash forecast profiles with downwind surface-based aerosol lidar observations, the modeled field is consistent with the measurements only when Aeolus winds are assimilated. This result clearly demonstrates the potential of Aeolus and highlights the necessity of future wind profiling satellite missions for improving volcanic ash forecasting and hence aviation safety.},
+   ISSN = {2045-2322},
+   DOI = {10.1038/s41598-023-34715-6},
+   url = {https://doi.org/10.1038/s41598-023-34715-6},
+   year = {2023},
+   type = {Journal Article}
+}
+
