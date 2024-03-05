@@ -2,16 +2,16 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Research Centre for Atmospheric Physics and Climatology
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: misios_stergios.png
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p></p>
+    <p>79 Vasilissis Sofias str., 11521, Athens, Greece</p>
+    <p>Tel: +30 210 8832048</p>
 
 news: false # includes a list of news items
 latest_posts: false # includes a list of the newest posts
