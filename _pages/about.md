@@ -2,7 +2,8 @@
 layout: about
 title: about
 permalink: /
-subtitle: Research Centre for Atmospheric Physics and Climatology, Academy of Athens
+subtitle: Research Centre for Atmospheric Physics and Climatology
+          Academy of Athens
 
 profile:
   align: right
