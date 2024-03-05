@@ -6,7 +6,7 @@ title: blank # the website title (if blank, full name will be used instead)
 first_name: Stergios
 middle_name: 
 last_name: Misios
-email: smisios@academyofathens.gr
+email: 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
@@ -40,7 +40,7 @@ repo_trophies:
 # will use title and url fields
 # Take a look to https://github.com/jekyll/jekyll-feed for more customization
 
-rss_icon: true
+rss_icon: false
 
 # -----------------------------------------------------------------------------
 # Layout
@@ -69,7 +69,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 
 github_username: # your GitHub user name
 gitlab_username: # your GitLab user name
-x_username: # your X handle
+x_username: StergiosMisios
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: Stergios Misios # your LinkedIn user name
 telegram_username: # your Telegram user name
@@ -82,7 +82,7 @@ quora_username: # your Quora username
 publons_id: # your ID on Publons
 lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 osf_id: # your OSF ID
-research_gate_profile: # your profile on ResearchGate
+research_gate_profile: 
 scopus_id: # your profile on Scopus
 blogger_url: # your blogger URL
 work_url: # work page URL
@@ -103,8 +103,7 @@ discord_id: # your discord id (18-digit unique numerical identifier)
 zotero_username: # your zotero username
 wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
 
-contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+contact_note: 
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
