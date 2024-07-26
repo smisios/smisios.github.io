@@ -1,16 +1,18 @@
 ---
 layout: page
 title: StratoFire
-description: a project with a background image
+description: Fire smoke in the stratosphere: a new climate forcer 
 img: assets/img/12.jpg
 importance: 1
 category: work
 related_publications: true
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+
+The most extreme manifestation of a fire-weather interaction is the formation of pyrocumulonimbus (pyroCb) thunderstorms, which under particulalr conditions can inject smoke, ice and greenhouse-relevant gases deep in the stratosphere, of total burden comparable to mid-sized volcanoes.
+
+StratoFIRE will highlight the role of extreme pyroCb emissions in the stratosphere as a new short-lived climate forcer.
+
 
 To give your project a background in the portfolio page, just add the img tag to the front matter like so:
 
