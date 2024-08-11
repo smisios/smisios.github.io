@@ -16,14 +16,22 @@
       year: 2024
       description:
 
-    - title: Marie Curie Fellow
+    - title: Marie Skłodowska-Curie fellow
       institution: National Observatory of Athens
-      year: 2019-2024
+      year: 2021-2024
+      description: Climatic impacts of volcanic ash electrification — ElectricVolcano
+
+    - title: Postdoctoral research associate
+      institution: Department of Geoscience, Aarhus University
+      year: 2019 - 2021
+      description: Vellux Foundation, Villum Experiment “Environmental consequences of solar cosmic rays”
 
     - title: Postdoctoral research associate
       institution: University of Oxford
-      year: 1911 - 1917
-      description:
+      year: 2016 - 2019
+      description: Decadal influence of Solar Cycle
+
+
 
 - title: Education
   type: time_table
@@ -37,13 +45,13 @@
     - title: Master of Science
       institution: Aristotle University of Thessaloniki
       year: 2007
-      description:
+      description: Influence of the solar activity on the stratospheric climate and circulation.
         
         
     - title: Diploma in Physics
       institution: Aristotle University of Thessaloniki
       year: 2004
-      description:
+      description: Error estimation of narrow-band UV instruments for monochromatic radiation measurements.
 
 
 
