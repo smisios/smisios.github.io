@@ -3,7 +3,7 @@ layout: page
 title: tacos
 description: TRUTHS Mission Accompanying Consolidation Study-2
 img: assets/img/TRUTHS.png
-importance: 2
+importance: 1
 category: work
 giscus_comments: false
 ---
