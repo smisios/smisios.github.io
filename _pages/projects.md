@@ -2,7 +2,8 @@
 layout: page
 title: research
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: My research blends modelling and observations to help articulate the role of external forcings in the climate system.
+
 nav: true
 nav_order: 3
 display_categories: [work, fun]
