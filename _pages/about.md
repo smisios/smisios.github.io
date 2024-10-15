@@ -7,7 +7,7 @@ subtitle: Research Centre for Atmospheric Physics and Climatology
 
 profile:
   align: right
-  image: misios_stergios.png
+  image: misios.jpeg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p></p>
