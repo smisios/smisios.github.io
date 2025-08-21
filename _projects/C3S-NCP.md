@@ -4,7 +4,7 @@ title: C3S
 description: Seasonal to decadal predictions for national renewable energy management
 img: assets/img/c3s.webp
 importance: 1
-category: work
+category: funded
 giscus_comments: false
 ---
 

@@ -4,7 +4,7 @@ title: stratofire
 description: TRUTHS Mission Accompanying Consolidation Study-2
 img: assets/img/TRUTHS.png
 importance: 2
-category: work
+category: funded
 giscus_comments: false
 ---
 
