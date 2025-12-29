@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Aligning
+title: Aligning (2024-2026)
 description: <a href='https://aligning-project.eu/'>Asian Clusters in Agriculture and Climate Change</a> 
 
 img: assets/img/aligning.jpg
 importance: 2
-category: funded
+category: ongoing
 
 ---
 

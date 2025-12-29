@@ -1,10 +1,10 @@
 ---
 layout: page
-title: C3S
+title: C3S (2024-2026)
 description: Seasonal to decadal predictions for national renewable energy management
 img: assets/img/c3s.webp
-importance: 1
-category: funded
+importance: 2
+category: ongoing
 giscus_comments: false
 ---
 

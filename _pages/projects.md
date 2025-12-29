@@ -2,11 +2,11 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Student and funded projects
+description: Funded projects and stundent's bachelor and master theses 
 
 nav: true
 nav_order: 3
-display_categories: [funded, student]
+display_categories: [ongoing, past, student]
 horizontal: false
 ---
 
