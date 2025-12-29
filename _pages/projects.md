@@ -6,7 +6,7 @@ description: Student and funded projects
 
 nav: true
 nav_order: 3
-display_categories: [student, funded]
+display_categories: [funded, student]
 horizontal: false
 ---
 

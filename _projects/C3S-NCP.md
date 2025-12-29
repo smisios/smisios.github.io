@@ -8,74 +8,31 @@ category: funded
 giscus_comments: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+In C3S-NCP-Greece we propose to extend the uptake of climate data by the energy sector at lead times
+beyond the traditional meteorological forecasts (e.g., 7-15 days). Specifically, C3S-NCP-Greece
+upscales the plethora of data provided by the EC under the Copernicus Climate Change Service (C3S)
+to include probabilistic forecasts at seasonal (e.g. next-month/summer) and decadal (e.g. next 5-10
+years) lead times in energy demand and RES generation and planning. These time scales are not
+considered in any national climate service and the C3S-NCP-Greece has identified an
+information/service gap in existing workflows and decision planning tools. C3S-NCP-Greece envisions
+to promote the development of new national climate services using a seamless methodology from
+seasonal to decadal time scales. The new services will benchmark the applicability of near-term
+predictions to other key national priorities (e.g. blue economy, tourism, agriculture).
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}
+As a first demonstration of the climate services of C3S-NCP-Greece, an Climate service for Energy Hub
+portal will be developed to stream the related climate services. This service will provide information
+about C3S products and developed services in Greek, showcase success stories, and feature
+testimonials from Greek users of C3S. Additionally, the C3S-NCP-Greece website will be linked to the
+web-portal that will be created for data distribution and visualisation. The portal will allow end-users
+to access, download, and analyse C3S-NCP data products, providing interactive maps, graphs, and
+charts to visualise the near-term predictions of essential climate and energy variables. It will also offer
+online support and guidance for utilising C3S-NCP-Greece data products.
+The main objectives of C3S-NCP-Greece are to:
+• support national authorities with new information from C3S.
+• develop and operate a seamless prediction system to cover near-term time scales, from
+seasonal to decadal.
+• apply the prediction system for the energy use case to provide probabilistic forecasts of
+energy demand and solar and wind energy production.
+• define user-oriented needs and the transferability of the prediction system to other sectors.
+• communicate C3S services and news to the academia, industry, non-governmental
+organisations, and public stakeholders.
