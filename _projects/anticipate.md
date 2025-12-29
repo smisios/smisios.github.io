@@ -1,0 +1,11 @@
+---
+layout: page
+title: COST ACTION Anticipate (2025-2029)
+description: Extended-range multi-hazard predictions and early warnings
+
+img: assets/img/cost_action.png
+importance: 2
+category: ongoing
+
+---
+Operational extreme weather forecasts and early warnings are generally limited to timescales of up to around 10 days and to predicting single events, such as flooding or a heatwave. However, a new generation of experimental ‘extended-range’ weather predictions that extend up to 46 days have been developed over the last decade by the world’s leading meteorological centres. A key motivation of exploring this prediction timescale is to bridge the gap between timescales, incorporate the latest ‘multi-hazard’ approaches, and improve early warnings and anticipatory actions. Currently, however, the extended-range prediction and the multi-hazard communities are largely disconnected. To date, there has been no coordinated effort to build a network that connects these disciplines and communities towards the development of operational systems. However, it is essential that these communities come together to explore windows of opportunity and instigate a step-change in the way forecasts are designed, produced and used. To address this challenge, ANTICIPATE will create the first pan-European network focused on extended-range multi-hazard predictions and warnings. ANTICIPATE will bring together existing but largely disconnected disciplines, operational practitioners and stakeholders (including extreme weather forecasting, extended-range prediction and climate dynamics, disaster risk reduction, multi-hazards, and communications) to drive forward advancements in the science, training, communication and application that will support next generation of effective early warnings that enable preparedness and action across hazards and forecasting lead times. ANTICIPATE will provide vital leadership in multi-hazard predictions and warnings, address gaps and challenges, and educate the next generation of forecasters and communicators for societal benefit.
