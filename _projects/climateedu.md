@@ -1,10 +1,10 @@
 ---
 layout: page
-title: ClimateEDU
-description: _projects/Stratofire.md
+title: ClimateEDU (2026-2028)
+description: Education and Learning for Climate Services Uptake at the National Level
 img: assets/img/climateedu.jpg
-importance: 3
-category: funded
+importance: 1
+category: ongoing
 giscus_comments: false
 ---
 The Climate-Edu project aims to advance Climate Change Education
