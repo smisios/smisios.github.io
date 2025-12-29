@@ -1,8 +1,8 @@
 ---
 layout: page
-title: stratofire (2023-2035)
-description: Fire smoke in the stratosphere: a new climate forcer
-img: 
+title: stratofire (2023-2025)
+description: Fire smoke in the stratosphere a new climate forcer
+img: assets/img/stratofire_logo.png
 importance: 1
 category: past
 giscus_comments: false
