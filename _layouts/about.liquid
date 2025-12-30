@@ -48,6 +48,14 @@ layout: default
       {% include news.liquid limit=true %}
     {% endif %}
 
+    <!-- Extended content after news -->
+    {% if page.extended_content %}
+      <div class="extended-content">
+        {% capture extended_text %}{% include {{ page.extended_content }} %}{% endcapture %}
+        {{ extended_text | markdownify }}
+      </div>
+    {% endif %}
+
     <!-- Latest posts -->
     {% if page.latest_posts %}
       <h2>
