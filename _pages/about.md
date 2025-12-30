@@ -27,6 +27,13 @@ social: true # includes social icons at the bottom of the page
 #  limit: 3 # leave blank to include all the news in the `_news` folder
 ---
 
+> <i class="fas fa-quote-left"></i>
+> Oh, I tried diving even though the sky was storming, <br />
+> Thunderheads were forming, <br />
+> But man I thought I could fly...
+> <i class="fas fa-quote-right"></i><br />
+> —&nbsp;The Killers
+
 
 I am a atmospheric physicist and climate modeler. I am Assistant Researcher in the [Research Centre for Atmospheric Physics and Climatology](https://kefak.academyofathens.gr/en) at the [Academy of Athens](https://www.academyofathens.gr).
 
