@@ -1,7 +1,7 @@
 ---
 layout: page
 title: World Bank-Cairo (2026)
-description: Development of environmental sustainability education material for university undergraduate student
+description: Development of environmental sustainability education material for university undergraduate students
 img: 
 importance: 2
 category: ongoing
