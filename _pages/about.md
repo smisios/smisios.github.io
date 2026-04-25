@@ -36,7 +36,7 @@ social: true # includes social icons at the bottom of the page
 > —&nbsp;The Killers
 
 
-I am a atmospheric physicist and climate modeler. I am Assistant Researcher in the [Research Centre for Atmospheric Physics and Climatology](https://kefak.academyofathens.gr/en) at the [Academy of Athens](https://www.academyofathens.gr).
+I am an atmospheric physicist and climate modeler. I am Assistant Researcher in the [Research Centre for Atmospheric Physics and Climatology](https://kefak.academyofathens.gr/en) at the [Academy of Athens](https://www.academyofathens.gr).
 
 My research blends modelling and observations to help articulate the role of external forcings in the climate system. 
 
@@ -45,3 +45,5 @@ I have been involved in the development and evaluation of the MPI-ESM, EMAC/MESS
 I have also deployed instrumentation for measuring Atmospheric Electricity in the Chelmos high-altitude observatory and the Villum Research Station, Greenland.
 
 Lately, I am interested in developing methodologies for climate-related financial disclosures for the benefit of business activities.
+
+[List of historical weather stations in Greece](/assets/apps/rescueklima_stations.html){: .btn .btn-primary }

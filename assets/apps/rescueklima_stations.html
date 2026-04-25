@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RescueKlima Weather Stations</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style>
+body {
+  margin:0;
+  font-family: system-ui;
+  background:#0c1018;
+  color:#fff;
+}
+
+/* HEADER */
+header {
+  height:50px;
+  display:flex;
+  align-items:center;
+  padding:0 15px;
+  background:#131822;
+  gap:10px;
+}
+
+input {
+  padding:6px;
+  background:#1a2133;
+  border:none;
+  color:white;
+}
+
+/* MAP */
+#map {
+  height:calc(100vh - 50px);
+  width:100%;
+}
+
+/* PANEL */
+.detail-panel {
+  position:absolute;
+  top:70px;
+  left:15px;
+  width:320px;
+  background:#131822;
+  padding:15px;
+  border-radius:10px;
+  display:none;
+  z-index:1000;
+}
+
+.detail-panel.visible { display:block; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <b>RescueKlima Weather Stations</b>
+  <input id="searchInput" placeholder="Search station...">
+</header>
+
+<div id="map"></div>
+
+<div class="detail-panel" id="detailPanel">
+  <h3 id="detailName"></h3>
+  <div id="detailInfo"></div>
+  <canvas id="chart" height="120"></canvas>
+</div>
+
+<script>
+
+/* ─── DATA (or load from JSON later) ─── */
+let stations = [
+  { id:"GR1", name:"Athens", lat:37.9, lng:23.7, monthly:[10,11,13,17,22,27,30,30,26,20,15,11]},
+  { id:"GR2", name:"Thessaloniki", lat:40.6, lng:22.9, monthly:[5,7,10,15,21,26,29,29,24,18,11,7]}
+];
+
+let markers = {};
+let chart;
+
+/* ─── MAP ─── */
+const map = L.map('map').setView([38.5,23.5],7);
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
+.addTo(map);
+
+/* ─── RENDER MARKERS ─── */
+function render() {
+
+  Object.values(markers).forEach(m => map.removeLayer(m));
+  markers = {};
+
+  stations.forEach(st => {
+
+    let m = L.circleMarker([st.lat,st.lng], {
+      radius:6,
+      color:"#3b9eff",
+      fillOpacity:1
+    })
+    .addTo(map)
+    .bindTooltip(st.name)
+    .on('click', () => openDetail(st));
+
+    markers[st.id] = m;
+  });
+}
+
+/* ─── DETAIL PANEL ─── */
+function openDetail(st) {
+
+  document.getElementById("detailPanel").classList.add("visible");
+  document.getElementById("detailName").innerText = st.name;
+  document.getElementById("detailInfo").innerText =
+    `Lat: ${st.lat}  Lon: ${st.lng}`;
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type:'line',
+    data:{
+      labels:['J','F','M','A','M','J','J','A','S','O','N','D'],
+      datasets:[{
+        data:st.monthly,
+        borderColor:"#3b9eff"
+      }]
+    }
+  });
+}
+
+/* ─── SEARCH ─── */
+document.getElementById("searchInput").addEventListener("input", e => {
+
+  let q = e.target.value.toLowerCase();
+
+  let filtered = stations.filter(s =>
+    s.name.toLowerCase().includes(q)
+  );
+
+  if (filtered.length === 1) {
+    map.flyTo([filtered[0].lat, filtered[0].lng], 9);
+  }
+});
+
+/* INIT */
+render();
+
+</script>
+</body>
+</html>

@@ -1,11 +1,15 @@
-- url: greenland1.jpg
+- url: greenland1.jpeg
   title: Going to Greenland
-  caption: View from Lycabettus
+  caption: 
 
-- url: greenland2.png
+- url: greenland2.jpeg
   title: Station Nord next to the Greenland ice sheet
   caption: 
 
-- url: greenland3.png
+- url: greenland3.jpeg
   title: Polar bear steps in Station Nord
+  caption: 
+
+- url: greenland4.jpeg
+  title: Measuring atmospheric electricity with JCI-131 at Station Nord
   caption: 
