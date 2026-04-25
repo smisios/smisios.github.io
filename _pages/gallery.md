@@ -1,111 +1,185 @@
 ---
+
 layout: page
+
 title: gallery
-description: a selection of photos I took during my travels! for full quality pictures, contact me.
+
+description: a selection of photos I took during my travels!
+
 permalink: /gallery/
+
 nav: true
+
 nav_order: 5
+
 ---
 
 <div class="gallery">
+
   {% for image in site.data.gallery %}
-    <div class="gallery-item">
-      <a href="{{ '/assets/img/gallery/' | append: image.url | relative_url }}" 
-         class="gallery-item glightbox" 
-         data-title="{{ image.title }}" 
-         data-description="{{ image.caption }}">
-        <img src="{{ '/assets/img/gallery/' | append: image.url | relative_url }}" alt="{{ image.title }}">
+
+    <figure class="gallery-item">
+
+      <a 
+
+        href="{{ '/assets/img/gallery/' | append: image.url | relative_url }}"
+
+        class="glightbox"
+
+        data-title="{{ image.title | escape }}"
+
+        data-description="{{ image.caption | escape }}"
+
+      >
+
+        <img 
+
+          src="{{ '/assets/img/gallery/' | append: image.url | relative_url }}"
+
+          alt="{{ image.title | escape }}"
+
+          loading="lazy"
+
+        >
+
       </a>
-    </div>
+
+    </figure>
+
   {% endfor %}
+
 </div>
 
-<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet">
+<!-- GLightbox -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const lightbox = GLightbox({
-      selector: '.glightbox',
-      skin: 'clean',
-      touchNavigation: true,
-      loop: true,
-      openEffect: 'zoom',
-      closeEffect: 'zoom',
-      slideEffect: 'slide',
-      descPosition: 'left',
-      zoomable: false,
-      autoplayVideos: false,
-      moreLength: 60,
-      moreText: 'See more'
-    });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  GLightbox({
+
+    selector: '.glightbox',
+
+    touchNavigation: true,
+
+    loop: true,
+
+    openEffect: 'zoom',
+
+    closeEffect: 'zoom',
+
+    slideEffect: 'slide',
+
+    descPosition: 'bottom',
+
+    zoomable: false,
+
+    autoplayVideos: false
+
   });
+
+});
+
 </script>
 
 <style>
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 0.5rem;
-  }
 
-  .gallery-item {
-    display: block;
-  }
+/* ─── GRID ─── */
 
-  .gallery-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-  }
+.gallery {
 
-  .gallery-item:hover img {
-    transform: scale(1.03);
-  }
+  display: grid;
 
-  .glightbox-clean .gslide-description .gdesc-inner {
-    color: #3d3c42;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
-  .glightbox-clean .gslide-title {
-    font-weight: bold;
-    color: #3d3c42;
-  }
+  gap: 0.6rem;
 
-  @media (min-width: 768px) {
-    html[data-theme="dark"] .glightbox-clean .gslide-description .gdesc-inner {
-      color: #f1ddd8;
-      background: #26282e;
-    }
-    html[data-theme="dark"] .glightbox-clean .gslide-title {
-      color: #f1ddd8;
-      font-weight: bold;
-    }
-  }
+}
 
-  .gdesc-inner {
-    width: 100%;
-    box-sizing: border-box;
-  }
+/* ─── ITEM ─── */
 
-  .glightbox-container {
-    background: rgba(0, 0, 0, 0.8);
-  }
+.gallery-item {
 
-  /* Title in the lightbox */
-  .glightbox-clean .gslide-title {
-    font-family: var(--bs-body-font-family, "Lato", system-ui, sans-serif);
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
+  margin: 0;
 
-  /* Description/caption in the lightbox */
-  .glightbox-clean .gslide-description .gdesc-inner {
-    font-family: var(--bs-body-font-family, "Lato", system-ui, sans-serif);
-    font-weight: 200;
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
+}
+
+/* ─── IMAGE ─── */
+
+.gallery-item img {
+
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+
+  border-radius: 10px;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+}
+
+/* Hover */
+
+.gallery-item:hover img {
+
+  transform: scale(1.04);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+
+}
+
+/* ─── LIGHTBOX ─── */
+
+.glightbox-container {
+
+  background: rgba(0, 0, 0, 0.85);
+
+}
+
+/* Title */
+
+.glightbox-clean .gslide-title {
+
+  font-family: var(--bs-body-font-family, system-ui);
+
+  font-weight: 600;
+
+  font-size: 1.1rem;
+
+}
+
+/* Caption */
+
+.glightbox-clean .gdesc-inner {
+
+  font-family: var(--bs-body-font-family, system-ui);
+
+  font-size: 0.95rem;
+
+  line-height: 1.5;
+
+}
+
+/* ─── DARK MODE ─── */
+
+html[data-theme="dark"] .glightbox-clean .gslide-title,
+
+html[data-theme="dark"] .glightbox-clean .gdesc-inner {
+
+  color: #f1ddd8;
+
+}
+
+html[data-theme="dark"] .gdesc-inner {
+
+  background: #26282e;
+
+}
+
 </style>
