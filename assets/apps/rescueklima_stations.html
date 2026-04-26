@@ -5,150 +5,532 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RescueKlima Weather Stations</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
 <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b26;
+  --surface2:  #1e2535;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.13);
+  --text:      #e2e8f0;
+  --muted:     #6b7a99;
+  --accent:    #38bdf8;
+  --accent2:   #818cf8;
+  --hydro:     #34d399;
+  --meteor:    #38bdf8;
+  --font:      'DM Sans', sans-serif;
+  --mono:      'DM Mono', monospace;
+  --sidebar-w: 210px;
+  --bottom-h:  72px;
+  --header-h:  48px;
+}
+
 body {
-  margin:0;
-  font-family: system-ui;
-  background:#0c1018;
-  color:#fff;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  display: grid;
+  grid-template-rows: var(--header-h) 1fr var(--bottom-h);
+  grid-template-columns: var(--sidebar-w) 1fr;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* HEADER */
+/* ── HEADER ── */
 header {
-  height:50px;
-  display:flex;
-  align-items:center;
-  padding:0 15px;
-  background:#131822;
-  gap:10px;
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 18px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border2);
 }
 
-input {
-  padding:6px;
-  background:#1a2133;
-  border:none;
-  color:white;
+.logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--accent);
+  white-space: nowrap;
 }
 
-/* MAP */
+.header-sep { width: 1px; height: 20px; background: var(--border2); }
+
+#searchInput {
+  font-family: var(--font);
+  font-size: 13px;
+  padding: 5px 10px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--text);
+  width: 200px;
+  outline: none;
+}
+#searchInput:focus { border-color: var(--accent); }
+#searchInput::placeholder { color: var(--muted); }
+
+.header-count {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ── SIDEBAR ── */
+aside {
+  grid-row: 2;
+  grid-column: 1;
+  background: var(--surface);
+  border-right: 1px solid var(--border2);
+  overflow-y: auto;
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 0 6px;
+  margin-bottom: 4px;
+}
+
+.owner-btn {
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.35;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 7px 9px;
+  text-align: left;
+  transition: background .15s, border-color .15s, color .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.owner-btn .owner-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--muted);
+  transition: background .15s;
+}
+
+.owner-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+.owner-btn.active {
+  background: rgba(56,189,248,.1);
+  border-color: var(--accent);
+  color: var(--text);
+}
+.owner-btn.active .owner-dot { background: var(--accent); }
+
+.owner-btn .owner-count {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* type legend at bottom of sidebar */
+.type-legend { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--muted); }
+.legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── MAP ── */
 #map {
-  height:calc(100vh - 50px);
-  width:100%;
+  grid-row: 2;
+  grid-column: 2;
 }
 
-/* PANEL */
+/* ── BOTTOM DECADE BAR ── */
+.decade-bar {
+  grid-column: 1 / -1;
+  background: var(--surface);
+  border-top: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.decade-bar::-webkit-scrollbar { display: none; }
+
+.decade-label {
+  font-size: 10px;
+  letter-spacing: .07em;
+  color: var(--muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.decade-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 9px;
+  white-space: nowrap;
+  transition: background .15s, border-color .15s, color .15s;
+  flex-shrink: 0;
+}
+.decade-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+.decade-btn.active {
+  background: rgba(129,140,248,.15);
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+.decade-btn.all-btn.active {
+  background: rgba(56,189,248,.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── DETAIL PANEL ── */
 .detail-panel {
-  position:absolute;
-  top:70px;
-  left:15px;
-  width:320px;
-  background:#131822;
-  padding:15px;
-  border-radius:10px;
-  display:none;
-  z-index:1000;
+  position: absolute;
+  top: calc(var(--header-h) + 12px);
+  right: 14px;
+  width: 290px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 16px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 8px 32px rgba(0,0,0,.5);
+}
+.detail-panel.visible { display: block; }
+
+.panel-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+
+.panel-name { font-size: 15px; font-weight: 500; line-height: 1.3; }
+.panel-id { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+.close-btn {
+  background: none; border: none;
+  color: var(--muted); font-size: 18px;
+  cursor: pointer; line-height: 1; padding: 0 2px;
+  flex-shrink: 0;
+}
+.close-btn:hover { color: var(--text); }
+
+.type-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+.type-badge.meteorological { background: rgba(56,189,248,.15); color: var(--meteor); }
+.type-badge.hydrological   { background: rgba(52,211,153,.15); color: var(--hydro); }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.detail-cell { background: var(--surface2); border-radius: 7px; padding: 8px 10px; }
+.detail-cell .dc-label { font-size: 10px; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .05em; }
+.detail-cell .dc-value { font-family: var(--mono); font-size: 13px; color: var(--text); }
+
+.vars-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.var-pill {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border2);
 }
 
-.detail-panel.visible { display:block; }
+/* ── STATUS ── */
+#statusOverlay {
+  position: absolute;
+  top: calc(var(--header-h) + 12px);
+  left: calc(var(--sidebar-w) + 12px);
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 1000;
+  display: none;
+}
+#statusOverlay.error { color: #f87171; border-color: rgba(248,113,113,.3); }
+
+/* Leaflet popup style override */
+.leaflet-popup-content-wrapper {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border2) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,.5) !important;
+}
+.leaflet-popup-tip { background: var(--surface) !important; }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-  <b>RescueKlima Weather Stations</b>
-  <input id="searchInput" placeholder="Search station...">
+  <span class="logo">RESCUEKLIMA (In development) / STATIONS</span>
+  <div class="header-sep"></div>
+  <input id="searchInput" placeholder="Search station…">
+  <span class="header-count" id="headerCount"></span>
 </header>
 
+<!-- SIDEBAR -->
+<aside id="sidebar">
+  <div class="sidebar-label">Owner</div>
+  <!-- populated by JS -->
+  <div class="type-legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--meteor)"></div>Meteorological</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--hydro)"></div>Hydrological</div>
+  </div>
+</aside>
+
+<!-- MAP -->
 <div id="map"></div>
 
+<!-- DETAIL PANEL -->
 <div class="detail-panel" id="detailPanel">
-  <h3 id="detailName"></h3>
-  <div id="detailInfo"></div>
-  <canvas id="chart" height="120"></canvas>
+  <div class="panel-header">
+    <div>
+      <div class="panel-name" id="detailName"></div>
+      <div class="panel-id" id="detailId"></div>
+    </div>
+    <button class="close-btn" id="closeBtn">&times;</button>
+  </div>
+  <div class="type-badge" id="detailType"></div>
+  <div class="detail-grid" id="detailGrid"></div>
+  <div class="dc-label" style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;">Variables</div>
+  <div class="vars-row" id="detailVars"></div>
+</div>
+
+<!-- STATUS -->
+<div id="statusOverlay"></div>
+
+<!-- BOTTOM DECADE BAR -->
+<div class="decade-bar" id="decadeBar">
+  <span class="decade-label">Decade</span>
+  <!-- populated by JS -->
 </div>
 
 <script>
+const DATA_URL = "rescueklima_stations.json";
 
-/* ─── DATA (or load from JSON later) ─── */
-let stations = [
-  { id:"GR1", name:"Athens", lat:37.9, lng:23.7, monthly:[10,11,13,17,22,27,30,30,26,20,15,11]},
-  { id:"GR2", name:"Thessaloniki", lat:40.6, lng:22.9, monthly:[5,7,10,15,21,26,29,29,24,18,11,7]}
-];
+const DECADES = [];
+for (let y = 1890; y <= 2020; y += 10) DECADES.push(y);
 
-let markers = {};
-let chart;
+let stations = [];
+let markers  = {};
+let activeOwner  = null;
+let activeDecade = null;
 
-/* ─── MAP ─── */
-const map = L.map('map').setView([38.5,23.5],7);
+/* ── MAP ── */
+const map = L.map("map", { zoomControl: true }).setView([38.5, 23.5], 7);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+  attribution: "© OpenStreetMap © CartoDB"
+}).addTo(map);
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png')
-.addTo(map);
+/* ── COLORS ── */
+const typeColor = { meteorological: "#38bdf8", hydrological: "#34d399" };
 
-/* ─── RENDER MARKERS ─── */
+/* ── FILTER LOGIC ── */
+function stationVisible(st) {
+  if (activeOwner && st.owner !== activeOwner) return false;
+  if (activeDecade !== null) {
+    const [from, to] = st.years;
+    const decEnd = activeDecade + 9;
+    if (to < activeDecade || from > decEnd) return false;
+  }
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  if (q && !st.name.toLowerCase().includes(q)) return false;
+  return true;
+}
+
+/* ── RENDER MARKERS ── */
 function render() {
-
   Object.values(markers).forEach(m => map.removeLayer(m));
   markers = {};
+  let visible = 0;
 
   stations.forEach(st => {
+    if (!stationVisible(st)) return;
+    visible++;
+    const color = typeColor[st.station_type] || "#aaa";
 
-    let m = L.circleMarker([st.lat,st.lng], {
-      radius:6,
-      color:"#3b9eff",
-      fillOpacity:1
+    const m = L.circleMarker([st.lat, st.lng], {
+      radius: 7,
+      color: color,
+      fillColor: color,
+      fillOpacity: 0.85,
+      weight: 1.5,
+      opacity: 0.9
     })
     .addTo(map)
-    .bindTooltip(st.name)
-    .on('click', () => openDetail(st));
+    .bindTooltip(`<b style="font-size:12px">${st.name}</b><br><span style="font-size:11px;color:#94a3b8">${st.owner}</span>`, { direction: "top" })
+    .on("click", () => openDetail(st));
 
     markers[st.id] = m;
   });
+
+  document.getElementById("headerCount").textContent =
+    `${visible} / ${stations.length} stations`;
 }
 
-/* ─── DETAIL PANEL ─── */
+/* ── DETAIL PANEL ── */
 function openDetail(st) {
+  const panel = document.getElementById("detailPanel");
+  panel.classList.add("visible");
 
-  document.getElementById("detailPanel").classList.add("visible");
-  document.getElementById("detailName").innerText = st.name;
-  document.getElementById("detailInfo").innerText =
-    `Lat: ${st.lat}  Lon: ${st.lng}`;
+  document.getElementById("detailName").textContent = st.name;
+  document.getElementById("detailId").textContent   = st.id;
 
-  if (chart) chart.destroy();
+  const typeEl = document.getElementById("detailType");
+  typeEl.textContent  = st.station_type;
+  typeEl.className    = `type-badge ${st.station_type}`;
 
-  chart = new Chart(document.getElementById("chart"), {
-    type:'line',
-    data:{
-      labels:['J','F','M','A','M','J','J','A','S','O','N','D'],
-      datasets:[{
-        data:st.monthly,
-        borderColor:"#3b9eff"
-      }]
-    }
+  document.getElementById("detailGrid").innerHTML = `
+    <div class="detail-cell"><div class="dc-label">Latitude</div><div class="dc-value">${st.lat.toFixed(4)}°</div></div>
+    <div class="detail-cell"><div class="dc-label">Longitude</div><div class="dc-value">${st.lng.toFixed(4)}°</div></div>
+    <div class="detail-cell"><div class="dc-label">Elevation</div><div class="dc-value">${st.elevation} m</div></div>
+    <div class="detail-cell"><div class="dc-label">Period</div><div class="dc-value">${st.years[0]}–${st.years[1]}</div></div>
+    <div class="detail-cell" style="grid-column:1/-1"><div class="dc-label">Owner</div><div class="dc-value" style="font-family:var(--font);font-size:12px">${st.owner}</div></div>
+  `;
+
+  document.getElementById("detailVars").innerHTML = st.variables
+    .map(v => `<span class="var-pill">${v}</span>`).join("");
+}
+
+function closeDetail() {
+  document.getElementById("detailPanel").classList.remove("visible");
+}
+document.getElementById("closeBtn").addEventListener("click", closeDetail);
+
+/* ── SIDEBAR OWNER BUTTONS ── */
+function buildSidebar() {
+  const owners = [...new Set(stations.map(s => s.owner))].sort();
+  const aside  = document.getElementById("sidebar");
+
+  // remove old buttons (keep legend)
+  aside.querySelectorAll(".owner-btn").forEach(b => b.remove());
+  const legend = aside.querySelector(".type-legend");
+
+  // "All" button
+  const allBtn = makeOwnerBtn("All", null, stations.length);
+  allBtn.classList.add("active");
+  aside.insertBefore(allBtn, legend);
+
+  owners.forEach(owner => {
+    const count = stations.filter(s => s.owner === owner).length;
+    aside.insertBefore(makeOwnerBtn(owner, owner, count), legend);
   });
 }
 
-/* ─── SEARCH ─── */
-document.getElementById("searchInput").addEventListener("input", e => {
+function makeOwnerBtn(label, value, count) {
+  const btn = document.createElement("button");
+  btn.className = "owner-btn";
+  btn.innerHTML = `<span class="owner-dot"></span><span style="flex:1">${label}</span><span class="owner-count">${count}</span>`;
+  btn.addEventListener("click", () => {
+    activeOwner = value;
+    document.querySelectorAll(".owner-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  });
+  return btn;
+}
 
-  let q = e.target.value.toLowerCase();
+/* ── DECADE BAR ── */
+function buildDecadeBar() {
+  const bar = document.getElementById("decadeBar");
 
-  let filtered = stations.filter(s =>
-    s.name.toLowerCase().includes(q)
-  );
+  const allBtn = document.createElement("button");
+  allBtn.className = "decade-btn all-btn active";
+  allBtn.textContent = "All";
+  allBtn.addEventListener("click", () => {
+    activeDecade = null;
+    bar.querySelectorAll(".decade-btn").forEach(b => b.classList.remove("active"));
+    allBtn.classList.add("active");
+    render();
+  });
+  bar.appendChild(allBtn);
 
-  if (filtered.length === 1) {
-    map.flyTo([filtered[0].lat, filtered[0].lng], 9);
+  DECADES.forEach(dec => {
+    const btn = document.createElement("button");
+    btn.className = "decade-btn";
+    btn.textContent = dec + "s";
+    btn.addEventListener("click", () => {
+      activeDecade = dec;
+      bar.querySelectorAll(".decade-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render();
+    });
+    bar.appendChild(btn);
+  });
+}
+
+/* ── SEARCH ── */
+document.getElementById("searchInput").addEventListener("input", render);
+
+/* ── STATUS ── */
+function showStatus(msg, isError) {
+  const el = document.getElementById("statusOverlay");
+  el.textContent = msg;
+  el.className = isError ? "error" : "";
+  el.style.display = "block";
+}
+function hideStatus() {
+  document.getElementById("statusOverlay").style.display = "none";
+}
+
+/* ── LOAD ── */
+async function loadStations() {
+  showStatus("Loading stations…");
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    stations = await res.json();
+    hideStatus();
+    buildSidebar();
+    buildDecadeBar();
+    render();
+  } catch (err) {
+    showStatus(`Failed to load station data: ${err.message}`, true);
+    console.error(err);
   }
-});
+}
 
-/* INIT */
-render();
-
+loadStations();
 </script>
 </body>
 </html>
