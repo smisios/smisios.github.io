@@ -23,8 +23,8 @@
   --muted:     #6b7a99;
   --accent:    #38bdf8;
   --accent2:   #818cf8;
-  --hydro:     #34d399;
-  --meteor:    #38bdf8;
+  --hydro:     #38bdf8;
+  --meteor:    #34d399;
   --font:      'DM Sans', sans-serif;
   --mono:      'DM Mono', monospace;
   --sidebar-w: 210px;
@@ -302,7 +302,7 @@ aside {
 
 <!-- HEADER -->
 <header>
-  <span class="logo">RESCUEKLIMA (In development) / STATIONS</span>
+  <span class="logo">RESCUEKLIMA / STATIONS</span>
   <div class="header-sep"></div>
   <input id="searchInput" placeholder="Search station…">
   <span class="header-count" id="headerCount"></span>
@@ -363,15 +363,15 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
 }).addTo(map);
 
 /* ── COLORS ── */
-const typeColor = { meteorological: "#38bdf8", hydrological: "#34d399" };
+const typeColor = { meteorological: "#34d399", hydrological: "#38bdf8" };
 
 /* ── FILTER LOGIC ── */
 function stationVisible(st) {
   if (activeOwner && st.owner !== activeOwner) return false;
   if (activeDecade !== null) {
-    const [from, to] = st.years;
     const decEnd = activeDecade + 9;
-    if (to < activeDecade || from > decEnd) return false;
+    const hasYear = st.years.some(y => y >= activeDecade && y <= decEnd);
+    if (!hasYear) return false;
   }
   const q = document.getElementById("searchInput").value.toLowerCase();
   if (q && !st.name.toLowerCase().includes(q)) return false;
@@ -389,7 +389,7 @@ function render() {
     visible++;
     const color = typeColor[st.station_type] || "#aaa";
 
-    const m = L.circleMarker([st.lat, st.lng], {
+    const m = L.circleMarker([st.lat, st.lon], {
       radius: 7,
       color: color,
       fillColor: color,
@@ -422,9 +422,9 @@ function openDetail(st) {
 
   document.getElementById("detailGrid").innerHTML = `
     <div class="detail-cell"><div class="dc-label">Latitude</div><div class="dc-value">${st.lat.toFixed(4)}°</div></div>
-    <div class="detail-cell"><div class="dc-label">Longitude</div><div class="dc-value">${st.lng.toFixed(4)}°</div></div>
+    <div class="detail-cell"><div class="dc-label">Longitude</div><div class="dc-value">${st.lon.toFixed(4)}°</div></div>
     <div class="detail-cell"><div class="dc-label">Elevation</div><div class="dc-value">${st.elevation} m</div></div>
-    <div class="detail-cell"><div class="dc-label">Period</div><div class="dc-value">${st.years[0]}–${st.years[1]}</div></div>
+    <div class="detail-cell"><div class="dc-label">Period</div><div class="dc-value">${Math.min(...st.years)}–${Math.max(...st.years)}</div></div>
     <div class="detail-cell" style="grid-column:1/-1"><div class="dc-label">Owner</div><div class="dc-value" style="font-family:var(--font);font-size:12px">${st.owner}</div></div>
   `;
 
