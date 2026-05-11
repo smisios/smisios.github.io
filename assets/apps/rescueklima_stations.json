@@ -3927,7 +3927,7 @@
     "station_name_gr": "ΣΙΛΙΜΝΑ",
     "latitude": 37.62,
     "longitude": 22.33,
-    "alt": 920900.0,
+    "alt": 920,
     "opening_date": "1931-10-01",
     "closing_date": "2010-08-01",
     "years_in_operation": [
@@ -5480,7 +5480,7 @@
     "station_name_gr": "ΙΩΑΝΝΙΝΑ",
     "latitude": 39.67,
     "longitude": 20.85,
-    "alt": 464474.0,
+    "alt": 464,
     "opening_date": "1918-09-01",
     "closing_date": "1963-12-01",
     "years_in_operation": [
@@ -8180,7 +8180,7 @@
     "station_name_gr": "ΑΜΥΝΤΑΙΟ",
     "latitude": 40.7,
     "longitude": 21.68,
-    "alt": 579480.0,
+    "alt": 579.0,
     "opening_date": "1964-05-01",
     "closing_date": "2010-12-01",
     "years_in_operation": [
@@ -12617,7 +12617,7 @@
     "station_name_gr": "ΜΕΤΑΞΑΔΕΣ",
     "latitude": 41.42,
     "longitude": 26.23,
-    "alt": 119182.0,
+    "alt": 119.0,
     "opening_date": "1931-05-01",
     "closing_date": "1964-04-01",
     "years_in_operation": [
@@ -18007,7 +18007,7 @@
     "station_name_gr": "ΚΑΡΥΕΣ",
     "latitude": 38.38,
     "longitude": 26.1,
-    "alt": 350290.0,
+    "alt": 350.0,
     "opening_date": "1963-12-01",
     "closing_date": "2012-08-01",
     "years_in_operation": [

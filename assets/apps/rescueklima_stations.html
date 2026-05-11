@@ -28,7 +28,7 @@
   --font:      'DM Sans', sans-serif;
   --mono:      'DM Mono', monospace;
   --sidebar-w: 210px;
-  --bottom-h:  72px;
+  --bottom-h:  44px;
   --header-h:  48px;
 }
 
@@ -37,7 +37,7 @@ body {
   background: var(--bg);
   color: var(--text);
   display: grid;
-  grid-template-rows: var(--header-h) 1fr var(--bottom-h);
+  grid-template-rows: var(--header-h) 1fr var(--bottom-h) var(--bottom-h);
   grid-template-columns: var(--sidebar-w) 1fr;
   height: 100vh;
   overflow: hidden;
@@ -162,7 +162,8 @@ aside {
 }
 
 /* ── BOTTOM DECADE BAR ── */
-.decade-bar {
+.decade-bar,
+.altitude-bar {
   grid-column: 1 / -1;
   background: var(--surface);
   border-top: 1px solid var(--border2);
@@ -173,18 +174,22 @@ aside {
   overflow-x: auto;
   scrollbar-width: none;
 }
-.decade-bar::-webkit-scrollbar { display: none; }
+.decade-bar::-webkit-scrollbar,
+.altitude-bar::-webkit-scrollbar { display: none; }
 
-.decade-label {
+.decade-label,
+.altitude-label {
   font-size: 10px;
   letter-spacing: .07em;
   color: var(--muted);
   text-transform: uppercase;
   white-space: nowrap;
   margin-right: 4px;
+  min-width: 60px;
 }
 
-.decade-btn {
+.decade-btn,
+.altitude-btn {
   font-family: var(--mono);
   font-size: 11px;
   background: transparent;
@@ -197,13 +202,16 @@ aside {
   transition: background .15s, border-color .15s, color .15s;
   flex-shrink: 0;
 }
-.decade-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
-.decade-btn.active {
+.decade-btn:hover,
+.altitude-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+.decade-btn.active,
+.altitude-btn.active {
   background: rgba(129,140,248,.15);
   border-color: var(--accent2);
   color: var(--accent2);
 }
-.decade-btn.all-btn.active {
+.decade-btn.all-btn.active,
+.altitude-btn.all-btn.active {
   background: rgba(56,189,248,.1);
   border-color: var(--accent);
   color: var(--accent);
@@ -347,16 +355,25 @@ aside {
   <!-- populated by JS -->
 </div>
 
+<!-- BOTTOM ALTITUDE BAR -->
+<div class="altitude-bar" id="altitudeBar">
+  <span class="altitude-label">Altitude ≥</span>
+  <!-- populated by JS -->
+</div>
+
 <script>
 const DATA_URL = "./rescueklima_stations.json";
 
 const DECADES = [];
 for (let y = 1890; y <= 2020; y += 10) DECADES.push(y);
 
+const ALTITUDES = [200, 500, 1000]; // metres – buttons are "≥ value"
+
 let stations = [];
 let markers  = {};
-let activeOwner  = null;
-let activeDecade = null;
+let activeOwner    = null;
+let activeDecade   = null;
+let activeAltitude = null; // null = All, otherwise minimum altitude in metres
 
 /* ── MAP ── */
 const map = L.map("map", { zoomControl: true }).setView([38.5, 23.5], 7);
@@ -392,6 +409,9 @@ function stationVisible(st) {
     const years = yearsList(st);
     const hasYear = years.some(y => y >= activeDecade && y <= decEnd);
     if (!hasYear) return false;
+  }
+  if (activeAltitude !== null) {
+    if (st.alt == null || st.alt < activeAltitude) return false;
   }
   const q = document.getElementById("searchInput").value.toLowerCase();
   if (q) {
@@ -546,6 +566,35 @@ function buildDecadeBar() {
   });
 }
 
+/* ── ALTITUDE BAR ── */
+function buildAltitudeBar() {
+  const bar = document.getElementById("altitudeBar");
+
+  const allBtn = document.createElement("button");
+  allBtn.className = "altitude-btn all-btn active";
+  allBtn.textContent = "All";
+  allBtn.addEventListener("click", () => {
+    activeAltitude = null;
+    bar.querySelectorAll(".altitude-btn").forEach(b => b.classList.remove("active"));
+    allBtn.classList.add("active");
+    render();
+  });
+  bar.appendChild(allBtn);
+
+  ALTITUDES.forEach(alt => {
+    const btn = document.createElement("button");
+    btn.className = "altitude-btn";
+    btn.textContent = alt + " m";
+    btn.addEventListener("click", () => {
+      activeAltitude = alt;
+      bar.querySelectorAll(".altitude-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render();
+    });
+    bar.appendChild(btn);
+  });
+}
+
 /* ── SEARCH ── */
 document.getElementById("searchInput").addEventListener("input", render);
 
@@ -570,6 +619,7 @@ async function loadStations() {
     hideStatus();
     buildSidebar();
     buildDecadeBar();
+    buildAltitudeBar();
     render();
   } catch (err) {
     showStatus(`Failed to load station data: ${err.message}`, true);
