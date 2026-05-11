@@ -228,7 +228,8 @@ aside {
 .panel-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
 
 .panel-name { font-size: 15px; font-weight: 500; line-height: 1.3; }
-.panel-id { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+.panel-name-gr { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.3; }
+.panel-id { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 4px; }
 
 .close-btn {
   background: none; border: none;
@@ -326,6 +327,7 @@ aside {
   <div class="panel-header">
     <div>
       <div class="panel-name" id="detailName"></div>
+      <div class="panel-name-gr" id="detailNameGr"></div>
       <div class="panel-id" id="detailId"></div>
     </div>
     <button class="close-btn" id="closeBtn">&times;</button>
@@ -346,7 +348,7 @@ aside {
 </div>
 
 <script>
-const DATA_URL = "rescueklima_stations.json";
+const DATA_URL = "./rescueklima_stations.json";
 
 const DECADES = [];
 for (let y = 1890; y <= 2020; y += 10) DECADES.push(y);
@@ -363,18 +365,40 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
 }).addTo(map);
 
 /* ── COLORS ── */
-const typeColor = { meteorological: "#34d399", hydrological: "#38bdf8" };
+const typeColor = { Meteorological: "#34d399", Hydrological: "#38bdf8" };
+
+/* ── HELPERS ── */
+// `variables` is a single string in the new schema – normalize to array
+// so the rest of the UI can keep working with multiple pills if you
+// later split on a delimiter.
+function variablesAsList(v) {
+  if (Array.isArray(v)) return v;
+  if (typeof v === "string" && v.trim()) {
+    // split on common delimiters (comma, semicolon, " / ")
+    return v.split(/\s*[;,/]\s*/).filter(Boolean);
+  }
+  return [];
+}
+
+function yearsList(st) {
+  return Array.isArray(st.years_in_operation) ? st.years_in_operation : [];
+}
 
 /* ── FILTER LOGIC ── */
 function stationVisible(st) {
   if (activeOwner && st.owner !== activeOwner) return false;
   if (activeDecade !== null) {
     const decEnd = activeDecade + 9;
-    const hasYear = st.years.some(y => y >= activeDecade && y <= decEnd);
+    const years = yearsList(st);
+    const hasYear = years.some(y => y >= activeDecade && y <= decEnd);
     if (!hasYear) return false;
   }
   const q = document.getElementById("searchInput").value.toLowerCase();
-  if (q && !st.name.toLowerCase().includes(q)) return false;
+  if (q) {
+    const nameEn = (st.station_name || "").toLowerCase();
+    const nameGr = (st.station_name_gr || "").toLowerCase();
+    if (!nameEn.includes(q) && !nameGr.includes(q)) return false;
+  }
   return true;
 }
 
@@ -386,10 +410,15 @@ function render() {
 
   stations.forEach(st => {
     if (!stationVisible(st)) return;
+    if (st.latitude == null || st.longitude == null) return;
     visible++;
     const color = typeColor[st.station_type] || "#aaa";
 
-    const m = L.circleMarker([st.lat, st.lon], {
+    const grLine = st.station_name_gr
+      ? `<br><span style="font-size:11px;color:#cbd5e1">${st.station_name_gr}</span>`
+      : "";
+
+    const m = L.circleMarker([st.latitude, st.longitude], {
       radius: 7,
       color: color,
       fillColor: color,
@@ -398,10 +427,14 @@ function render() {
       opacity: 0.9
     })
     .addTo(map)
-    .bindTooltip(`<b style="font-size:12px">${st.name}</b><br><span style="font-size:11px;color:#94a3b8">${st.owner}</span>`, { direction: "top" })
+    .bindTooltip(
+      `<b style="font-size:12px">${st.station_name}</b>${grLine}` +
+      `<br><span style="font-size:11px;color:#94a3b8">${st.owner || ""}</span>`,
+      { direction: "top" }
+    )
     .on("click", () => openDetail(st));
 
-    markers[st.id] = m;
+    markers[st.station_id] = m;
   });
 
   document.getElementById("headerCount").textContent =
@@ -413,23 +446,37 @@ function openDetail(st) {
   const panel = document.getElementById("detailPanel");
   panel.classList.add("visible");
 
-  document.getElementById("detailName").textContent = st.name;
-  document.getElementById("detailId").textContent   = st.id;
+  document.getElementById("detailName").textContent   = st.station_name || "—";
+  document.getElementById("detailNameGr").textContent = st.station_name_gr || "";
+  document.getElementById("detailId").textContent     = st.station_id || "";
 
   const typeEl = document.getElementById("detailType");
-  typeEl.textContent  = st.station_type;
-  typeEl.className    = `type-badge ${st.station_type}`;
+  typeEl.textContent  = st.station_type || "Unknown";
+  typeEl.className    = `type-badge ${st.station_type || ""}`;
+
+  const years = yearsList(st);
+  const period = years.length
+    ? `${Math.min(...years)}–${Math.max(...years)}`
+    : "—";
+
+  const lat = (st.latitude != null) ? `${st.latitude.toFixed(4)}°` : "—";
+  const lon = (st.longitude != null) ? `${st.longitude.toFixed(4)}°` : "—";
+  const alt = (st.alt != null) ? `${st.alt} m` : "—";
 
   document.getElementById("detailGrid").innerHTML = `
-    <div class="detail-cell"><div class="dc-label">Latitude</div><div class="dc-value">${st.lat.toFixed(4)}°</div></div>
-    <div class="detail-cell"><div class="dc-label">Longitude</div><div class="dc-value">${st.lon.toFixed(4)}°</div></div>
-    <div class="detail-cell"><div class="dc-label">Elevation</div><div class="dc-value">${st.elevation} m</div></div>
-    <div class="detail-cell"><div class="dc-label">Period</div><div class="dc-value">${Math.min(...st.years)}–${Math.max(...st.years)}</div></div>
-    <div class="detail-cell" style="grid-column:1/-1"><div class="dc-label">Owner</div><div class="dc-value" style="font-family:var(--font);font-size:12px">${st.owner}</div></div>
+    <div class="detail-cell"><div class="dc-label">Latitude</div><div class="dc-value">${lat}</div></div>
+    <div class="detail-cell"><div class="dc-label">Longitude</div><div class="dc-value">${lon}</div></div>
+    <div class="detail-cell"><div class="dc-label">Elevation</div><div class="dc-value">${alt}</div></div>
+    <div class="detail-cell"><div class="dc-label">Period</div><div class="dc-value">${period}</div></div>
+    <div class="detail-cell"><div class="dc-label">Years</div><div class="dc-value">${years.length}</div></div>
+    <div class="detail-cell"><div class="dc-label">WMO ID</div><div class="dc-value">${st.WMO_id ?? "—"}</div></div>
+    <div class="detail-cell" style="grid-column:1/-1"><div class="dc-label">Owner</div><div class="dc-value" style="font-family:var(--font);font-size:12px">${st.owner || "—"}</div></div>
   `;
 
-  document.getElementById("detailVars").innerHTML = st.variables
-    .map(v => `<span class="var-pill">${v}</span>`).join("");
+  const vars = variablesAsList(st.variables);
+  document.getElementById("detailVars").innerHTML = vars.length
+    ? vars.map(v => `<span class="var-pill">${v}</span>`).join("")
+    : `<span class="var-pill">—</span>`;
 }
 
 function closeDetail() {
@@ -439,7 +486,7 @@ document.getElementById("closeBtn").addEventListener("click", closeDetail);
 
 /* ── SIDEBAR OWNER BUTTONS ── */
 function buildSidebar() {
-  const owners = [...new Set(stations.map(s => s.owner))].sort();
+  const owners = [...new Set(stations.map(s => s.owner).filter(Boolean))].sort();
   const aside  = document.getElementById("sidebar");
 
   // remove old buttons (keep legend)
