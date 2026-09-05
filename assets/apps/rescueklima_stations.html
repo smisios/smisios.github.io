@@ -280,6 +280,34 @@ aside {
   border: 1px solid var(--border2);
 }
 
+.view-reports-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 9px 10px;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(56,189,248,.1);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  color: var(--accent);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.view-reports-btn:hover { background: var(--accent); color: var(--bg); }
+.view-reports-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  border-color: var(--border2);
+  color: var(--muted);
+  background: transparent;
+}
+.view-reports-btn:disabled:hover { background: transparent; color: var(--muted); }
+
 /* ── STATUS ── */
 #statusOverlay {
   position: absolute;
@@ -344,6 +372,7 @@ aside {
   <div class="detail-grid" id="detailGrid"></div>
   <div class="dc-label" style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;">Variables</div>
   <div class="vars-row" id="detailVars"></div>
+  <button class="view-reports-btn" id="viewReportsBtn">View Scanned Reports →</button>
 </div>
 
 <!-- STATUS -->
@@ -462,7 +491,10 @@ function render() {
 }
 
 /* ── DETAIL PANEL ── */
+let currentStation = null;
+
 function openDetail(st) {
+  currentStation = st;
   const panel = document.getElementById("detailPanel");
   panel.classList.add("visible");
 
@@ -503,6 +535,15 @@ function closeDetail() {
   document.getElementById("detailPanel").classList.remove("visible");
 }
 document.getElementById("closeBtn").addEventListener("click", closeDetail);
+
+document.getElementById("viewReportsBtn").addEventListener("click", () => {
+  if (!currentStation) return;
+  const params = new URLSearchParams({
+    id: currentStation.station_id,
+    name: currentStation.station_name || ""
+  });
+  window.open(`station_timeline.html?${params.toString()}`, "_blank");
+});
 
 /* ── SIDEBAR OWNER BUTTONS ── */
 function buildSidebar() {

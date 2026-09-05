@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RescueKlima — Station Reports</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b26;
+  --surface2:  #1e2535;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.13);
+  --text:      #e2e8f0;
+  --muted:     #6b7a99;
+  --accent:    #38bdf8;
+  --accent2:   #818cf8;
+  --font:      'DM Sans', sans-serif;
+  --mono:      'DM Mono', monospace;
+  --header-h:  48px;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: var(--header-h);
+  padding: 0 18px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border2);
+}
+.logo {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.header-sep { width: 1px; height: 20px; background: var(--border2); }
+.back-link {
+  font-size: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.back-link:hover { color: var(--text); }
+
+/* ── STATION HERO ── */
+.hero {
+  padding: 26px 32px 18px;
+  border-bottom: 1px solid var(--border2);
+}
+.hero-name { font-size: 20px; font-weight: 500; }
+.hero-name-gr { font-size: 13px; color: var(--muted); margin-top: 3px; }
+.hero-id { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 6px; }
+
+.stat-row {
+  display: flex;
+  gap: 14px;
+  padding: 18px 32px 0;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 10px 16px;
+  min-width: 110px;
+}
+.stat-card .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.stat-card .value { font-family: var(--mono); font-size: 16px; margin-top: 3px; }
+
+/* ── SELECTED / DOWNLOAD PANEL ── */
+.selected-panel {
+  margin: 22px 32px 0;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+.selected-panel.show { opacity: 1; transform: translateY(0); }
+.selected-panel .label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.selected-panel .value { font-size: 16px; font-weight: 500; margin-top: 2px; }
+
+.btn {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 7px;
+  padding: 9px 16px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border-color: rgba(56,189,248,.4);
+}
+.btn-secondary:hover { background: rgba(56,189,248,.1); }
+.btn-row { display: flex; gap: 10px; }
+
+/* ── PREVIEW PANEL ── */
+.preview-panel {
+  margin: 14px 32px 0;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height .3s ease, opacity .25s ease;
+}
+.preview-panel.show { max-height: 560px; opacity: 1; }
+.preview-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border2);
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+.preview-toolbar-right { display: flex; align-items: center; gap: 10px; }
+.icon-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+.preview-frame {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  background: #090c11;
+  max-height: 420px;
+  overflow: auto;
+}
+.scan-page {
+  width: 320px;
+  min-height: 420px;
+  background: #f4efe4;
+  border-radius: 2px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.4);
+  padding: 32px 28px;
+  position: relative;
+  color: #2b2620;
+}
+.scan-header-line {
+  width: 100%; height: 14px;
+  background: repeating-linear-gradient(90deg, #b8ab8f 0 3px, transparent 3px 6px);
+  margin-bottom: 20px; opacity: .6;
+}
+.scan-line { height: 8px; background: #cabf9f; border-radius: 2px; margin-bottom: 11px; opacity: .7; }
+.scan-table {
+  width: 100%; height: 100px; margin: 16px 0;
+  background:
+    repeating-linear-gradient(0deg, #b8ab8f 0 1px, transparent 1px 20px),
+    repeating-linear-gradient(90deg, #b8ab8f 0 1px, transparent 1px 44px);
+  opacity: .5;
+}
+.scan-stamp {
+  position: absolute; bottom: 24px; right: 24px;
+  font-size: 9px; font-weight: 700; letter-spacing: .05em;
+  color: #8a3b3b; border: 1.5px solid #8a3b3b; border-radius: 50%;
+  width: 58px; height: 58px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; line-height: 1.2; transform: rotate(-12deg); opacity: .55;
+}
+.preview-note { padding: 9px 16px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); }
+.preview-note code { color: var(--accent); }
+
+/* ── TIMELINE ── */
+.timeline-wrap { margin: 34px 0 0; padding: 0 32px 40px; }
+.hint { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+.timeline-scroll { overflow-x: auto; overflow-y: hidden; padding-bottom: 16px; scroll-behavior: smooth; }
+.timeline-scroll::-webkit-scrollbar { height: 8px; }
+.timeline-scroll::-webkit-scrollbar-track { background: var(--surface); border-radius: 4px; }
+.timeline-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+.timeline-scroll::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+.timeline-track { display: inline-flex; align-items: flex-end; gap: 26px; padding: 0 4px; position: relative; }
+.timeline-track::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 33px;
+  height: 2px; background: var(--border2);
+}
+.year-col { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 32px; flex-shrink: 0; }
+.year-col .year-label { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.year-col.has-data .year-label { color: var(--text); }
+.months-vert { display: flex; flex-direction: column-reverse; gap: 3px; height: 140px; }
+.month-tick { width: 20px; height: 9px; border-radius: 2px; background: transparent; border: 1px solid transparent; cursor: default; }
+.month-tick.available { background: rgba(56,189,248,.15); border-color: rgba(56,189,248,.5); cursor: pointer; }
+.month-tick.available:hover { background: var(--accent); }
+.month-tick.active { background: var(--accent); box-shadow: 0 0 0 2px rgba(56,189,248,.35); }
+.axis-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); margin-top: 2px; }
+.year-col.has-data .axis-dot { background: var(--accent); }
+
+.legend { display: flex; gap: 18px; margin-top: 6px; font-size: 11px; color: var(--muted); }
+.legend .dot { width: 9px; height: 9px; border-radius: 3px; display: inline-block; margin-right: 6px; vertical-align: middle; }
+
+#statusOverlay {
+  margin: 40px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  display: none;
+}
+#statusOverlay.error { color: #f87171; border-color: rgba(248,113,113,.3); }
+
+.tooltip {
+  position: fixed;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .12s ease;
+  z-index: 10;
+  white-space: nowrap;
+}
+.tooltip.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back-link" href="rescueklima_stations.html">&larr; Map</a>
+  <div class="header-sep"></div>
+  <span class="logo">RESCUEKLIMA / REPORTS</span>
+</header>
+
+<div class="hero">
+  <div class="hero-name" id="stationName">—</div>
+  <div class="hero-name-gr" id="stationId"></div>
+</div>
+
+<div class="stat-row">
+  <div class="stat-card"><div class="label">Reports</div><div class="value" id="statCount">—</div></div>
+  <div class="stat-card"><div class="label">Earliest</div><div class="value" id="statEarliest">—</div></div>
+  <div class="stat-card"><div class="label">Latest</div><div class="value" id="statLatest">—</div></div>
+</div>
+
+<div class="selected-panel" id="selectedPanel">
+  <div>
+    <div class="label">Selected report</div>
+    <div class="value" id="selectedLabel">—</div>
+  </div>
+  <div class="btn-row">
+    <button class="btn btn-secondary" id="previewBtn">👁 Preview</button>
+    <button class="btn btn-primary" id="downloadBtn">↓ Download scanned PDF</button>
+  </div>
+</div>
+
+<div class="preview-panel" id="previewPanel">
+  <div class="preview-toolbar">
+    <span id="previewFilename"></span>
+    <div class="preview-toolbar-right">
+      <button class="icon-btn" id="pagePrev">‹</button>
+      <span id="pageIndicator">Page 1 / 1</span>
+      <button class="icon-btn" id="pageNext">›</button>
+    </div>
+  </div>
+  <div class="preview-frame">
+    <div class="scan-page">
+      <div class="scan-header-line"></div>
+      <div class="scan-line" style="width:70%"></div>
+      <div class="scan-line" style="width:85%"></div>
+      <div class="scan-line" style="width:60%"></div>
+      <div class="scan-table"></div>
+      <div class="scan-line" style="width:75%"></div>
+      <div class="scan-line" style="width:50%"></div>
+      <div class="scan-stamp">RESCUEKLIMA<br>ARCHIVE</div>
+    </div>
+  </div>
+  <div class="preview-note">Live preview renders the actual scanned PDF via <code>/api/reports/{id}/view</code></div>
+</div>
+
+<div class="timeline-wrap">
+  <div class="hint">Scroll horizontally to browse years · click a month to select</div>
+  <div class="timeline-scroll" id="scrollContainer">
+    <div class="timeline-track" id="timeline"></div>
+  </div>
+  <div class="legend">
+    <div><span class="dot" style="background:rgba(56,189,248,.15); border:1px solid rgba(56,189,248,.5);"></span>Scan available</div>
+    <div><span class="dot" style="background:transparent; border:1px dashed var(--border2);"></span>Blank = no record</div>
+    <div><span class="dot" style="background:var(--accent);"></span>Selected</div>
+  </div>
+</div>
+
+<div id="statusOverlay"></div>
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+/* ── READ STATION FROM URL ── */
+const params = new URLSearchParams(location.search);
+const stationId = params.get("id");
+const stationNameParam = params.get("name") || "";
+
+document.getElementById("stationName").textContent = stationNameParam || "Unknown station";
+document.getElementById("stationId").textContent = stationId ? `ID: ${stationId}` : "";
+
+/* ── DATA SOURCE ──
+   Looks for a per-station JSON file first (static-site friendly, no backend
+   required): ./reports/{stationId}.json
+   Expected shape: [{ id, title, start: "YYYY-MM-DD", end: "YYYY-MM-DD", file }]
+
+   Once the FastAPI backend exists, swap this single line for:
+   const DATA_URL = `/api/stations/${stationId}/reports`;
+*/
+const DATA_URL = `./reports/${stationId}.json`;
+
+const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let reports = [];
+let selectedReportId = null;
+let currentPage = 1;
+const totalPagesMock = 1;
+
+function showStatus(msg, isError) {
+  const el = document.getElementById("statusOverlay");
+  el.textContent = msg;
+  el.className = isError ? "error" : "";
+  el.style.display = "block";
+}
+function hideStatus() {
+  document.getElementById("statusOverlay").style.display = "none";
+}
+
+function buildMonthMap() {
+  const map = {};
+  reports.forEach(r => {
+    let d = new Date(r.start + "T00:00:00");
+    const end = new Date(r.end + "T00:00:00");
+    while (d <= end) {
+      const key = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+      map[key] = r;
+      d.setMonth(d.getMonth() + 1);
+    }
+  });
+  return map;
+}
+
+function renderStats() {
+  document.getElementById("statCount").textContent = reports.length;
+  if (!reports.length) {
+    document.getElementById("statEarliest").textContent = "—";
+    document.getElementById("statLatest").textContent = "—";
+    return;
+  }
+  const starts = reports.map(r => new Date(r.start));
+  const ends = reports.map(r => new Date(r.end));
+  document.getElementById("statEarliest").textContent = new Date(Math.min(...starts)).getFullYear();
+  document.getElementById("statLatest").textContent = new Date(Math.max(...ends)).getFullYear();
+}
+
+function renderTimeline() {
+  const monthMap = buildMonthMap();
+  const track = document.getElementById("timeline");
+  track.innerHTML = "";
+
+  if (!reports.length) return;
+
+  const years = Object.keys(monthMap).map(k => parseInt(k.split("-")[0]));
+  const minYear = Math.min(...years);
+  const maxYear = Math.max(...years);
+
+  for (let year = minYear; year <= maxYear; year++) {
+    const col = document.createElement("div");
+    let hasData = false;
+
+    const monthsWrap = document.createElement("div");
+    monthsWrap.className = "months-vert";
+
+    for (let m = 1; m <= 12; m++) {
+      const key = year + "-" + String(m).padStart(2, "0");
+      const report = monthMap[key];
+      const tick = document.createElement("div");
+      tick.className = "month-tick" + (report ? " available" : "");
+      tick.dataset.key = key;
+      if (report) {
+        hasData = true;
+        tick.addEventListener("click", () => selectMonth(key, report));
+        tick.addEventListener("mouseenter", e => showTooltip(e, monthNames[m - 1] + " " + year));
+        tick.addEventListener("mouseleave", hideTooltip);
+      }
+      monthsWrap.appendChild(tick);
+    }
+
+    col.className = "year-col" + (hasData ? " has-data" : "");
+    col.appendChild(monthsWrap);
+    const dot = document.createElement("div");
+    dot.className = "axis-dot";
+    col.appendChild(dot);
+    const label = document.createElement("div");
+    label.className = "year-label";
+    label.textContent = year;
+    col.appendChild(label);
+
+    track.appendChild(col);
+  }
+
+  const scrollContainer = document.getElementById("scrollContainer");
+  requestAnimationFrame(() => { scrollContainer.scrollLeft = scrollContainer.scrollWidth; });
+}
+
+function showTooltip(e, text) {
+  const tip = document.getElementById("tooltip");
+  tip.textContent = text;
+  tip.style.left = e.clientX + 12 + "px";
+  tip.style.top = e.clientY - 28 + "px";
+  tip.classList.add("show");
+}
+function hideTooltip() { document.getElementById("tooltip").classList.remove("show"); }
+
+function selectMonth(key, report) {
+  document.querySelectorAll(".month-tick.active").forEach(b => b.classList.remove("active"));
+  document.querySelector(`.month-tick[data-key="${key}"]`).classList.add("active");
+
+  selectedReportId = report.id;
+  const [y, m] = key.split("-");
+  document.getElementById("selectedLabel").textContent = monthNames[parseInt(m) - 1] + " " + y;
+  document.getElementById("selectedPanel").classList.add("show");
+
+  document.getElementById("previewPanel").classList.remove("show");
+  document.getElementById("previewBtn").textContent = "👁 Preview";
+  currentPage = 1;
+  updatePageIndicator();
+  document.getElementById("previewFilename").textContent = report.file || `${stationId}_${y}-${m}.pdf`;
+}
+
+function updatePageIndicator() {
+  document.getElementById("pageIndicator").textContent = `Page ${currentPage} / ${totalPagesMock}`;
+}
+
+document.getElementById("previewBtn").addEventListener("click", () => {
+  if (!selectedReportId) return;
+  const panel = document.getElementById("previewPanel");
+  const btn = document.getElementById("previewBtn");
+  const isShown = panel.classList.toggle("show");
+  btn.textContent = isShown ? "✕ Close preview" : "👁 Preview";
+  // Production: point an <iframe> or PDF.js viewer at /api/reports/{selectedReportId}/view
+});
+
+document.getElementById("pagePrev").addEventListener("click", () => {
+  currentPage = Math.max(1, currentPage - 1);
+  updatePageIndicator();
+});
+document.getElementById("pageNext").addEventListener("click", () => {
+  currentPage = Math.min(totalPagesMock, currentPage + 1);
+  updatePageIndicator();
+});
+
+document.getElementById("downloadBtn").addEventListener("click", () => {
+  if (!selectedReportId) return;
+  const report = reports.find(r => r.id === selectedReportId);
+  // Production: window.location.href = `/api/reports/${selectedReportId}/download`;
+  if (report && report.file) {
+    window.location.href = `./reports/files/${report.file}`;
+  } else {
+    alert("No file path set for this report yet.");
+  }
+});
+
+/* ── LOAD ── */
+async function loadReports() {
+  if (!stationId) {
+    showStatus("No station selected. Go back to the map and choose a station.", true);
+    return;
+  }
+  showStatus("Loading reports…");
+  try {
+    const res = await fetch(DATA_URL);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    reports = await res.json();
+    hideStatus();
+    renderStats();
+    renderTimeline();
+    if (!reports.length) showStatus("No scanned reports found for this station.", false);
+  } catch (err) {
+    showStatus(`No report data found for this station yet (${err.message}).`, true);
+    console.error(err);
+  }
+}
+
+loadReports();
+</script>
+</body>
+</html>
