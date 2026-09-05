@@ -377,7 +377,7 @@ let activeAltitude = null; // null = All, otherwise minimum altitude in metres
 
 /* ── MAP ── */
 const map = L.map("map", { zoomControl: true }).setView([38.5, 23.5], 7);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=cb1_2yes_1_b4a326aa6682ff52330e1073", {
   attribution: "© OpenStreetMap © CartoDB"
 }).addTo(map);
 
