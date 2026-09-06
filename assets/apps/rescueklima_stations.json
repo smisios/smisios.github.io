@@ -21211,4 +21211,28 @@
       "flag_QC": null,
       "comments": ""
     }
+{
+      "station_id": "noa_1",
+      "WMO_id": null,
+      "station_name": "Andros",
+      "station_name_gr": "Ανδρος",
+      "latitude": 38.18384,
+      "longitude": 23.7834139,
+      "alt": 570,
+      "alt_barometer": null,
+      "opening_date": 1900,
+      "closing_date": 1901,
+      "years_in_operation": [
+        1900,
+        1901,
+      ],
+      "digitized_years": null,
+      "owner": "National Observatory of Athens (NOA)",
+      "station_type": "Meteorological",
+      "variables": "Temperature, Precipitation (mm), Wind",
+      "media_type": "Books",
+      "media_location": "NOA",
+      "flag_QC": null,
+      "comments": ""
+    },
 ]
