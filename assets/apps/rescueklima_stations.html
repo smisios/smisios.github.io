@@ -86,6 +86,49 @@ header {
   color: var(--muted);
 }
 
+.about-btn {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  background: transparent;
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 11px;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.about-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--accent); }
+
+/* ── ABOUT MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-overlay.visible { display: flex; }
+
+.modal-box {
+  width: min(440px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  padding: 20px 22px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6);
+}
+.modal-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+.modal-title { font-size: 15px; font-weight: 500; }
+.modal-body { font-size: 13px; line-height: 1.6; color: var(--text); }
+.modal-body p { margin-bottom: 10px; }
+.modal-body p:last-child { margin-bottom: 0; }
+.modal-body a { color: var(--accent); }
+
 /* ── SIDEBAR ── */
 aside {
   grid-row: 2;
@@ -343,6 +386,7 @@ aside {
   <div class="header-sep"></div>
   <input id="searchInput" placeholder="Search station…">
   <span class="header-count" id="headerCount"></span>
+  <button class="about-btn" id="aboutBtn">About</button>
 </header>
 
 <!-- SIDEBAR -->
@@ -373,6 +417,21 @@ aside {
   <div class="dc-label" style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;">Variables</div>
   <div class="vars-row" id="detailVars"></div>
   <button class="view-reports-btn" id="viewReportsBtn">View Scanned Reports →</button>
+</div>
+
+<!-- ABOUT MODAL -->
+<div class="modal-overlay" id="aboutOverlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">About RescueΚλίμα</div>
+      <button class="close-btn" id="aboutCloseBtn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>RescueΚλίμα (2026&ndash;2028) rescues Greece's rich 20th-century archive of weather observations by digitizing roughly 115,000 historical (sub)daily paper reports from the Hellenic National Meteorological Service (1932&ndash;1954), the National Observatory of Athens (1893&ndash;1931), and the Ministry of Rural Development and Food.</p>
+      <p>This map lets you explore the stations behind that archive &mdash; their locations, operating periods, and owners &mdash; and, where available, view the scanned reports themselves.</p>
+      <p>A project of the Academy of Athens, the National and Kapodistrian University of Athens, and the National Observatory of Athens.</p>
+    </div>
+  </div>
 </div>
 
 <!-- STATUS -->
@@ -543,6 +602,17 @@ document.getElementById("viewReportsBtn").addEventListener("click", () => {
     name: currentStation.station_name || ""
   });
   window.open(`station_timeline.html?${params.toString()}`, "_blank");
+});
+
+/* ── ABOUT MODAL ── */
+const aboutOverlay = document.getElementById("aboutOverlay");
+document.getElementById("aboutBtn").addEventListener("click", () => aboutOverlay.classList.add("visible"));
+document.getElementById("aboutCloseBtn").addEventListener("click", () => aboutOverlay.classList.remove("visible"));
+aboutOverlay.addEventListener("click", (e) => {
+  if (e.target === aboutOverlay) aboutOverlay.classList.remove("visible");
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") aboutOverlay.classList.remove("visible");
 });
 
 /* ── SIDEBAR OWNER BUTTONS ── */
