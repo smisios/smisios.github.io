@@ -21210,8 +21210,8 @@
       "media_location": "EYDAP",
       "flag_QC": null,
       "comments": ""
-    }
-{
+    },
+    {
       "station_id": "noa_1",
       "WMO_id": null,
       "station_name": "Andros",
@@ -21224,7 +21224,7 @@
       "closing_date": 1901,
       "years_in_operation": [
         1900,
-        1901,
+        1901
       ],
       "digitized_years": null,
       "owner": "National Observatory of Athens (NOA)",
@@ -21234,5 +21234,5 @@
       "media_location": "NOA",
       "flag_QC": null,
       "comments": ""
-    },
+    }
 ]

@@ -465,8 +465,9 @@ let activeAltitude = null; // null = All, otherwise minimum altitude in metres
 
 /* ── MAP ── */
 const map = L.map("map", { zoomControl: true }).setView([38.5, 23.5], 7);
-L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-  attribution: "© OpenStreetMap © CartoDB"
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+  attribution: "© Esri",
+  maxZoom: 16
 }).addTo(map);
 
 /* ── COLORS ── */
